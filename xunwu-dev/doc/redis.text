@@ -1,0 +1,21 @@
+## 启动redis-server，后台线程
+$ redis-server /usr/local/redis/etc/redis.conf
+
+## 启动成功
+$ ps axu|grep redis
+
+## 关闭服务器
+$ redis-cli shutdown
+
+
+#上面由于redis配置了密码没有权限，可以使用kill杀死pid方式关闭
+[root@iz2zecm4ndtkaue32tynx5z src]# ./redis-cli shutdown
+(error) NOAUTH Authentication required.
+
+[root@localhost src]# ps axu|grep redis
+root      6073  0.0  0.0 112704   976 pts/4    S+   20:03   0:00 grep --color=auto redis
+root     11857  0.0  0.1 140808  2208 ?        Ssl  04:27   0:36 ./redis-server *:6379
+[root@localhost src]# kill -9 11857
+
+##关闭成功
+$ ps axu|grep redis
